@@ -44,9 +44,19 @@ export class ContactsService extends ApiService {
   }
 
   async getAll(): Promise<Contacto[]> {
-    const res = await this.getAuth('Contact');
-    const resJson = await res.json();
-    return resJson;
+    const res = await fetch(API + 'Contact', {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: 'Bearer ' + this.auth.token(),
+      },
+    });
+    if (!res.ok) {
+      throw new Error('Error fetching contacts: ' + res.status);
+    }
+
+    const data = await res.json();
+    return data;
   }
 
   async getById(id: number | string): Promise<Contacto | undefined> {

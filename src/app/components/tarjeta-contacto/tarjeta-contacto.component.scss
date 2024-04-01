@@ -1,0 +1,20 @@
+.tarjeta-contacto {
+  padding: 10px 5px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 2fr 2fr;
+  cursor: pointer;
+  align-items: center;
+  app-icono-contacto {
+    width: 50%;
+    margin: auto;
+  }
+  &:hover {
+    background-color: grey;
+  }
+}
+
+@media (max-width: 768px) {
+  .tarjeta-contacto {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

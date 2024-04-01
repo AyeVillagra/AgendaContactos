@@ -8,6 +8,7 @@ import {
 import { API } from '../constants/api';
 import { LoginData, RegisterData } from '../interfaces/user';
 import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

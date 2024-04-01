@@ -1,4 +1,6 @@
 export interface RegisterData extends User {
+  lastName: string;
+  email: string;
   password: string;
 }
 

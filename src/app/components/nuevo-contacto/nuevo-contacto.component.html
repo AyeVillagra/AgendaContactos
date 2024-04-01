@@ -1,0 +1,27 @@
+<form #form="ngForm" (ngSubmit)="onSubmit()">
+  <h2>{{ contacto.id ? "Editar contacto" : "Nuevo contacto" }}</h2>
+  <div>
+    <label for="">Nombre</label>
+    <input type="text" [(ngModel)]="contacto.name" name="name" />
+  </div>
+
+  <div>
+    <label for="">Numero celular</label>
+    <input type="number" [(ngModel)]="contacto.celularNumber" name="celular" />
+  </div>
+  <div>
+    <label for="">Numero telefono</label>
+    <input
+      type="number"
+      [(ngModel)]="contacto.telephoneNumber"
+      name="telefono"
+    />
+  </div>
+  <div>
+    <label for="">Descripción</label>
+    <input type="text" [(ngModel)]="contacto.description" name="descripcion" />
+  </div>
+
+  <button type="submit">{{ contacto.id ? "Editar" : "Crear" }}</button>
+  <button type="button" (click)="cerrar.emit()">Cancelar</button>
+</form>
