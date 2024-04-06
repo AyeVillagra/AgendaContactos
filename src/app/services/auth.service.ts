@@ -8,7 +8,7 @@ import {
 import { API } from '../constants/api';
 import { LoginData, RegisterData } from '../interfaces/user';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root',
@@ -34,6 +34,13 @@ export class AuthService {
       console.log('LOGUEANDO', tokenRecibido);
       localStorage.setItem('token', tokenRecibido);
       this.token.set(tokenRecibido);
+
+      const helper = new JwtHelperService();
+      const decodedToken = helper.decodeToken(tokenRecibido);
+      const sub = decodedToken.sub;
+      console.log('SUB', sub);
+      localStorage.setItem('userId', sub);
+
       return true;
     } catch {
       return false;

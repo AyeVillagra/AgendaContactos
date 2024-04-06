@@ -10,6 +10,8 @@ export class ApiService {
   constructor() {}
 
   async getAuth(endpoint: string) {
+    const token = this.auth.token();
+    console.log(token);
     const res = await fetch(API + endpoint, {
       headers: {
         Authorization: 'Bearer ' + this.auth.token(),

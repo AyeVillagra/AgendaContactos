@@ -1,6 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Contacto } from '../../interfaces/contacto';
 import { ContactsService } from '../../services/contacts.service';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contacts',
@@ -11,14 +13,17 @@ export class ContactsComponent {
   contactsService = inject(ContactsService);
   contactos: Contacto[] = [];
 
-  constructor() {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  async verTodos() {
-    try {
-      // Llama a la función para obtener todos los contactos
-      this.contactos = await this.contactsService.getAll();
-    } catch (error) {
-      console.error('Error fetching contacts:', error);
-    }
+  ngOnInit(): void {
+    this.contactsService.getAll().then((res) => {
+      this.contactos = res;
+    });
+  }
+
+  // Método para cerrar sesión
+  logOut() {
+    this.authService.logOut();
+    this.router.navigate(['/login']);
   }
 }
