@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './contacts.component.html',
   styleUrls: ['./contacts.component.scss'],
 })
-export class ContactsComponent {
+export class ContactsComponent implements OnInit {
   contactsService = inject(ContactsService);
   contactos: Contacto[] = [];
 

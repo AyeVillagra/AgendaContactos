@@ -43,33 +43,6 @@ export class ContactsService extends ApiService {
     return res.ok;
   }
 
-  /*   async getAll(): Promise<Contacto[]> {
-    const token = this.auth.token();
-    const authHeader = 'Bearer ' + token;
-    console.log('authHeader', authHeader);
-
-    const userId = parseInt(localStorage.getItem('userId') || '0');
-    console.log('userId', userId);
-
-    const res = await fetch(API + 'Contact', {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: authHeader,
-      },
-    });
-
-    console.log('Response:', res);
-    console.log('Headers:', res.headers); // Imprime todos los encabezados
-    console.log('Authorization Header:', res.headers.get('Authorization'));
-    if (!res.ok) {
-      throw new Error('Error fetching contacts: ' + res.status);
-    }
-
-    const data = await res.json();
-    return data;
-  } */
-
   async getAll(): Promise<Contacto[]> {
     const res = await this.getAuth('Contact');
     const resJson = await res.json();
