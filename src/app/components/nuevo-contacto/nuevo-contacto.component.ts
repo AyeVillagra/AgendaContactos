@@ -19,6 +19,7 @@ import { AuthService } from '../../services/auth.service';
 export class NuevoContactoComponent {
   contactsService = inject(ContactsService);
   @Output() cerrar = new EventEmitter();
+  @Output() contactoAgregado = new EventEmitter<Contacto>();
   @Input() contacto: Contacto = {
     id: 0,
     name: '',
@@ -37,6 +38,7 @@ export class NuevoContactoComponent {
     this.cerrar.emit();
     if (res) {
       generarMensajeExito('Contacto agregado');
+      this.contactoAgregado.emit(this.contacto);
     } else {
       generarMensajeError('Error agregando contacto');
     }

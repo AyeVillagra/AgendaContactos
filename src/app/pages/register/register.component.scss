@@ -1,36 +1,64 @@
-.register-container {
+#container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   height: 100vh;
+  background-color: #f8f9fa; /* Fondo claro para resaltar el formulario */
 }
 
-.register-form {
-  width: 300px;
+.form-container {
+  width: 400px; /* Aumenta el tamaño del formulario */
   padding: 20px;
-  background-color: #f2f2f2;
-  border-radius: 5px;
+  background-color: #bbb3b3;
+  border-radius: 10px; /* Aumenta el radio de borde */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agrega una sombra */
 }
 
-.register-form input {
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
   width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 5px; /* Aumenta el radio de borde */
+  box-sizing: border-box;
 }
 
-.register-form button {
+.form-container button {
   width: 100%;
   padding: 10px;
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 3px;
+  border-radius: 5px; /* Aumenta el radio de borde */
   cursor: pointer;
+  margin-top: 10px;
 }
 
-.register-form button:hover {
+.form-container button:hover {
   background-color: #0056b3;
+}
+
+.form-container .error {
+  color: red;
+  margin-top: 5px;
+  font-size: 0.9em;
+}
+
+.form-container .spinner {
+  display: block;
+  margin: 10px auto;
+}
+
+.form-container p {
+  margin-top: 20px;
+  text-align: center;
 }

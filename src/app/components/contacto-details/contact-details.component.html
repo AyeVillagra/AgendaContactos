@@ -1,0 +1,11 @@
+<div class="contact-details">
+  <h3>{{ contacto?.name }}</h3>
+  <p>Teléfono: {{ contacto?.telephoneNumber }}</p>
+  <p>Celular: {{ contacto?.celularNumber }}</p>
+  <p>Descripción: {{ contacto?.description }}</p>
+  <div class="button-container">
+    <button class="edit-button">Editar</button>
+    <button class="delete-button" (click)="eliminarContacto()">Eliminar</button>
+  </div>
+  <span class="close-icon" (click)="cerrar.emit()">✖️</span>
+</div>

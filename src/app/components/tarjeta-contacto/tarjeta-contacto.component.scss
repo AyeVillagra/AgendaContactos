@@ -1,20 +1,30 @@
 .tarjeta-contacto {
-  padding: 10px 5px;
-  display: grid;
-  grid-template-columns: 1fr 2fr 2fr 2fr 2fr;
-  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  app-icono-contacto {
-    width: 50%;
-    margin: auto;
-  }
-  &:hover {
-    background-color: grey;
-  }
+  justify-content: center;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.tarjeta-contacto:hover {
+  background-color: #d0d0d0;
+}
+
+.tarjeta-contacto p {
+  margin: 5px 0;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
   .tarjeta-contacto {
-    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    height: auto;
   }
 }

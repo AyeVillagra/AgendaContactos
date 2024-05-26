@@ -1,21 +1,29 @@
 <div id="contactos-container">
-  <h5>Mis contactos</h5>
-  <div id="contactos-container">
-    <app-tarjeta-contacto
-      *ngFor="let contacto of contactos"
-      [contacto]="contacto"
-      [routerLink]="[contacto.id]"
-    ></app-tarjeta-contacto>
-  </div>
+  <button class="logout-button" (click)="logOut()">Cerrar Sesión</button>
+  <h2>MIS CONTACTOS</h2>
 
-  <!--<button class="ver-todos-button" (click)="verTodos()">Ver Todos</button>-->
   <button class="fab" (click)="dialogNuevoContacto.showModal()">+</button>
-
   <dialog method="dialog" #dialogNuevoContacto>
     <app-nuevo-contacto
       (cerrar)="dialogNuevoContacto.close()"
+      [contacto]="contactoSeleccionado"
+      (contactoAgregado)="actualizarLista($event)"
     ></app-nuevo-contacto>
   </dialog>
 
-  <button class="logout-button" (click)="logOut()">Cerrar Sesión</button>
+  <div class="contactos-grid">
+    <app-tarjeta-contacto
+      *ngFor="let contacto of contactos"
+      [contacto]="contacto"
+      (click)="openModal(contacto)"
+    ></app-tarjeta-contacto>
+  </div>
+  <br />
+  <div class="modal" *ngIf="showModal">
+    <app-contacto-details
+      [contacto]="selectedContact"
+      (cerrar)="closeModal()"
+      (contactoEliminado)="handleContactoEliminado($event)"
+    ></app-contacto-details>
+  </div>
 </div>

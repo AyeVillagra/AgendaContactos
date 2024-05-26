@@ -12,6 +12,17 @@ import { Router } from '@angular/router';
 export class ContactsComponent implements OnInit {
   contactsService = inject(ContactsService);
   contactos: Contacto[] = [];
+  showModal: boolean = false;
+  selectedContact: Contacto | null = null;
+
+  contactoSeleccionado: Contacto = {
+    id: 0,
+    name: '',
+    telephoneNumber: 0,
+    celularNumber: 0,
+    description: '',
+    userId: 0,
+  };
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -20,8 +31,26 @@ export class ContactsComponent implements OnInit {
       this.contactos = res;
     });
   }
+  openModal(contacto: Contacto) {
+    this.selectedContact = contacto;
+    this.showModal = true;
+  }
 
-  // Método para cerrar sesión
+  closeModal() {
+    this.showModal = false;
+  }
+
+  async cargarContactos() {
+    this.contactos = await this.contactsService.getAll();
+  }
+  actualizarLista(contacto: Contacto) {
+    this.cargarContactos();
+  }
+
+  handleContactoEliminado(id: number) {
+    this.contactos = this.contactos.filter((contacto) => contacto.id !== id);
+  }
+
   logOut() {
     this.authService.logOut();
     this.router.navigate(['/login']);

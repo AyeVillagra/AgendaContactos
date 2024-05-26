@@ -1,46 +1,48 @@
 <div id="container">
   <div class="form-container">
     <h1>Iniciar sesión</h1>
-    <p>Ingresá tus credenciales para acceder al servicio de contactos.</p>
+    <p>Ingresá las credenciales para acceder a tus contactos.</p>
     <form #loginForm="ngForm" (ngSubmit)="login()">
-      <label for="user" class="sr-only">Nombre de usuario</label>
-      <input
-        type="text"
-        name="user"
-        id="user"
-        [(ngModel)]="loginData.userName"
-        #user="ngModel"
-        placeholder="Usuario"
-        autocomplete="username"
-        required
-      />
-      <p *ngIf="user.invalid && (user.dirty || user.touched)" class="error">
-        Este campo es requerido
-      </p>
-      <label for="email" class="sr-only">Contraseña</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        placeholder="Contraseña"
-        autocomplete="current-password"
-        required
-        minlength="3"
-        [(ngModel)]="loginData.password"
-        #password="ngModel"
-      />
-      <p
-        class="error"
-        *ngIf="password.invalid && (password.dirty || password.touched)"
-      >
-        La contraseña tiene que tener un mínimo de 8 caracteres
-      </p>
+      <div class="form-group">
+        <input
+          type="text"
+          name="user"
+          id="user"
+          [(ngModel)]="loginData.userName"
+          #user="ngModel"
+          placeholder="Usuario"
+          autocomplete="username"
+          required
+        />
+        <p *ngIf="user.invalid && (user.dirty || user.touched)" class="error">
+          Este campo es requerido
+        </p>
+        <br />
+        <br />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Contraseña"
+          autocomplete="current-password"
+          required
+          minlength="3"
+          [(ngModel)]="loginData.password"
+          #password="ngModel"
+        />
+        <p
+          class="error"
+          *ngIf="password.invalid && (password.dirty || password.touched)"
+        >
+          La contraseña tiene que tener un mínimo de 8 caracteres
+        </p>
+      </div>
       <button type="submit" [disabled]="loginForm.invalid">
         Iniciar sesión
       </button>
       <img
         class="spinner"
-        src="./../../../assets/img/icons/spinner.svg"
+        src="./../../../assets/img/icons/Rolling.svg"
         alt="cargando"
         *ngIf="cargando()"
       />
