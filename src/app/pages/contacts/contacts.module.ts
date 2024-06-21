@@ -6,15 +6,18 @@ import { ContactsComponent } from './contacts.component';
 import { TarjetaContactoComponent } from '../../components/tarjeta-contacto/tarjeta-contacto.component';
 import { NuevoContactoComponent } from '../../components/nuevo-contacto/nuevo-contacto.component';
 import { ContactDetailsComponent } from '../../components/contacto-details/contact-details.component';
+import { FormsModule } from '@angular/forms';
+import { UserProfileComponent } from '../../components/user-profile/user-profile.component';
 
 @NgModule({
-  declarations: [ContactsComponent],
+  declarations: [ContactsComponent, UserProfileComponent],
   imports: [
     CommonModule,
     ContactsRoutingModule,
     TarjetaContactoComponent,
     NuevoContactoComponent,
     ContactDetailsComponent,
+    FormsModule,
   ],
 })
 export class ContactsModule {}

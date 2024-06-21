@@ -41,6 +41,14 @@
   box-sizing: border-box;
 }
 
+.form-container .spinner {
+  display: block;
+  margin: 10px auto;
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
 button[type="submit"] {
   width: 100%;
   padding: 10px;

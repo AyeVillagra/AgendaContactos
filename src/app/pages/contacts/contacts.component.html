@@ -1,29 +1,41 @@
-<div id="contactos-container">
-  <button class="logout-button" (click)="logOut()">Cerrar Sesión</button>
-  <h2>MIS CONTACTOS</h2>
+<div id="main-container">
+  <div id="contactos-container">
+    <button (click)="openProfileModal()" class="profile-button">
+      Mi Perfil
+    </button>
+    <button class="logout-button" (click)="logOut()">Cerrar Sesión</button>
 
-  <button class="fab" (click)="dialogNuevoContacto.showModal()">+</button>
-  <dialog method="dialog" #dialogNuevoContacto>
-    <app-nuevo-contacto
-      (cerrar)="dialogNuevoContacto.close()"
-      [contacto]="contactoSeleccionado"
-      (contactoAgregado)="actualizarLista($event)"
-    ></app-nuevo-contacto>
-  </dialog>
+    <button class="fab" (click)="handleNuevoContacto()">+</button>
+    <dialog method="dialog" #dialogNuevoContacto id="dialogNuevoContacto">
+      <app-nuevo-contacto
+        (cerrar)="dialogNuevoContacto.close()"
+        [contacto]="contactoSeleccionado"
+        (contactoAgregado)="actualizarLista($event)"
+      ></app-nuevo-contacto>
+    </dialog>
 
-  <div class="contactos-grid">
-    <app-tarjeta-contacto
-      *ngFor="let contacto of contactos"
-      [contacto]="contacto"
-      (click)="openModal(contacto)"
-    ></app-tarjeta-contacto>
+    <div class="contactos-grid">
+      <app-tarjeta-contacto
+        *ngFor="let contacto of contactos"
+        [contacto]="contacto"
+        (click)="openModal(contacto)"
+      ></app-tarjeta-contacto>
+    </div>
+    <br />
+    <div class="modal" *ngIf="showModal">
+      <app-contacto-details
+        [contacto]="selectedContact"
+        (cerrar)="closeModal()"
+        (contactoEliminado)="handleContactoEliminado($event)"
+        (editar)="handleEditarContacto($event)"
+      ></app-contacto-details>
+    </div>
   </div>
-  <br />
-  <div class="modal" *ngIf="showModal">
-    <app-contacto-details
-      [contacto]="selectedContact"
-      (cerrar)="closeModal()"
-      (contactoEliminado)="handleContactoEliminado($event)"
-    ></app-contacto-details>
-  </div>
+
+  <app-user-profile
+    *ngIf="showProfileModal"
+    [user]="currentUser"
+    (saveChanges)="guardarCambios(); closeProfileModal()"
+    (closeProfileModal)="closeProfileModal()"
+  ></app-user-profile>
 </div>

@@ -1,5 +1,12 @@
+#main-container {
+  display: flex;
+  height: 100vh;
+}
+
 #contactos-container {
   padding: 20px;
+  flex: 1;
+  position: relative;
 }
 
 .contactos-grid {
@@ -33,7 +40,7 @@
 
 .logout-button {
   position: absolute;
-  top: 20px;
+  top: 100px;
   right: 20px;
   background-color: #ff4b5c;
   color: white;
@@ -46,6 +53,19 @@
 
 .logout-button:hover {
   background-color: #c32f3c;
+}
+
+.profile-button {
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
 }
 
 dialog {

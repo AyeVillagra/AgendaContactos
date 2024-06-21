@@ -13,6 +13,7 @@ export class ContactDetailsComponent {
   @Input() contacto: Contacto | null = null;
   @Output() cerrar = new EventEmitter<void>();
   @Output() contactoEliminado = new EventEmitter<number>();
+  @Output() editar = new EventEmitter<Contacto>();
 
   async eliminarContacto() {
     if (
@@ -26,6 +27,13 @@ export class ContactDetailsComponent {
       } else {
         alert('Error al eliminar el contacto');
       }
+    }
+  }
+
+  editarContacto() {
+    if (this.contacto) {
+      console.log('Editar contacto:', this.contacto);
+      this.editar.emit(this.contacto);
     }
   }
 }

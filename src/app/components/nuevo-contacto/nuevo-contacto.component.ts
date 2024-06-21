@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  inject,
+  SimpleChanges,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Contacto } from '../../interfaces/contacto';
 import { FormsModule } from '@angular/forms';
@@ -7,7 +14,6 @@ import {
   generarMensajeError,
   generarMensajeExito,
 } from '../../helpers/mensajes';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-nuevo-contacto',

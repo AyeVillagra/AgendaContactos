@@ -1,0 +1,42 @@
+<div class="modal">
+  <div class="modal-content">
+    <span (click)="onCloseProfileModal()" class="close-icon">X</span>
+    <h2>Editar Perfil</h2>
+    <div *ngIf="user">
+      <form (ngSubmit)="onSaveChanges()">
+        <div class="form-group">
+          <label for="name">Nombre:</label>
+          <input type="text" id="name" [(ngModel)]="user.name" name="name" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            [(ngModel)]="user.email"
+            name="email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="userName">Nombre de Usuario:</label>
+          <input
+            type="text"
+            id="userName"
+            [(ngModel)]="user.userName"
+            name="userName"
+          />
+        </div>
+        <div class="form-group">
+          <label for="lastName">Apellido:</label>
+          <input
+            type="text"
+            id="lastName"
+            [(ngModel)]="user.lastName"
+            name="lastName"
+          />
+        </div>
+        <button type="submit" class="add-button">Guardar Cambios</button>
+      </form>
+    </div>
+  </div>
+</div>
