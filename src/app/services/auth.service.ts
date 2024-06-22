@@ -14,8 +14,10 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root',
 })
 export class AuthService {
+  private currentUserRole: string | null = null;
   constructor() {
     this.token.set(localStorage.getItem('token'));
+    this.setUserRoleFromToken(localStorage.getItem('token'));
   }
   router = inject(Router);
   token: WritableSignal<string | null> = signal(null);
@@ -63,5 +65,17 @@ export class AuthService {
     this.token.set(null);
     localStorage.removeItem('token');
     this.router.navigate(['/']);
+  }
+
+  getCurrentUserRole(): string | null {
+    return this.currentUserRole;
+  }
+
+  private setUserRoleFromToken(token: string | null) {
+    if (token) {
+      const helper = new JwtHelperService();
+      const decodedToken = helper.decodeToken(token);
+      this.currentUserRole = decodedToken.role;
+    }
   }
 }

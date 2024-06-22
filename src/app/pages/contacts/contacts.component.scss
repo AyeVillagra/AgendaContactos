@@ -12,8 +12,22 @@
 .contactos-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
   justify-content: center;
+}
+
+app-tarjeta-contacto {
+  flex: 1 1 calc(12.5% - 10px); /* Para que cada card ocupe un 12.5% del contenedor (100% / 8) menos el espacio del gap */
+  max-width: calc(12.5% - 10px);
+  box-sizing: border-box; /* Asegura que el padding y el border estén incluidos en el ancho y alto */
+}
+
+/* Puedes agregar un media query para ajustar el número de cards por fila en pantallas más pequeñas */
+@media (max-width: 1200px) {
+  app-tarjeta-contacto {
+    flex: 1 1 calc(16.66% - 10px); /* 6 cards por fila en pantallas medianas */
+    max-width: calc(16.66% - 10px);
+  }
 }
 
 .fab {
@@ -59,7 +73,7 @@
   position: absolute;
   top: 50px;
   right: 20px;
-  background-color: #0056b3;
+  background-color: #007bff;
   color: white;
   border: none;
   padding: 10px 20px;

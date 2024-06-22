@@ -21,6 +21,8 @@ export class ContactsComponent implements OnInit {
   currentUser: User | undefined;
   contactsService = inject(ContactsService);
   contactos: Contacto[] = [];
+  filteredContactos: any[] = [];
+  searchTerm: string = '';
   showModal: boolean = false;
   selectedContact: Contacto | null = null;
   showProfileModal: boolean = false;
@@ -57,11 +59,17 @@ export class ContactsComponent implements OnInit {
     // Llama a this.loadCurrentUser() para cargar los datos del usuario actual
     this.loadCurrentUser();
   }
-
   loadContactos() {
     this.contactsService.getAll().then((res) => {
       this.contactos = res;
+      this.filteredContactos = this.contactos; // Asegura que los contactos se copian a filteredContactos después de cargar
     });
+  }
+
+  filterContacts(): void {
+    this.filteredContactos = this.contactos.filter((contacto) =>
+      contacto.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 
   async loadCurrentUser() {

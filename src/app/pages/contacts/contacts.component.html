@@ -5,6 +5,13 @@
     </button>
     <button class="logout-button" (click)="logOut()">Cerrar Sesión</button>
 
+    <input
+      type="text"
+      placeholder="Buscar contacto..."
+      [(ngModel)]="searchTerm"
+      (input)="filterContacts()"
+    />
+
     <button class="fab" (click)="handleNuevoContacto()">+</button>
     <dialog method="dialog" #dialogNuevoContacto id="dialogNuevoContacto">
       <app-nuevo-contacto
@@ -16,7 +23,7 @@
 
     <div class="contactos-grid">
       <app-tarjeta-contacto
-        *ngFor="let contacto of contactos"
+        *ngFor="let contacto of filteredContactos"
         [contacto]="contacto"
         (click)="openModal(contacto)"
       ></app-tarjeta-contacto>

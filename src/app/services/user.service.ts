@@ -31,6 +31,59 @@ export class UserService {
     }
   }
 
+  async getAllUsers(): Promise<User[]> {
+    try {
+      const response = await fetch(`${API}user`, {
+        headers: {
+          Authorization: 'Bearer ' + this.auth.token(),
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch users');
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      throw error;
+    }
+  }
+
+  async getUserById(userId: number): Promise<User | undefined> {
+    try {
+      const response = await fetch(`${API}user/${userId}`, {
+        headers: {
+          Authorization: 'Bearer ' + this.auth.token(),
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch user');
+      }
+      return await response.json();
+    } catch (error) {
+      console.error(`Error fetching user with ID ${userId}:`, error);
+      throw error;
+    }
+  }
+
+  async createUser(user: User): Promise<void> {
+    try {
+      const response = await fetch(`${API}user`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + this.auth.token(),
+        },
+        body: JSON.stringify(user),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to create user');
+      }
+    } catch (error) {
+      console.error('Error creating user:', error);
+      throw error;
+    }
+  }
+
   async updateUser(user: User): Promise<void> {
     try {
       const response = await fetch(`${API}user/${user.id}`, {
@@ -47,6 +100,23 @@ export class UserService {
       }
     } catch (error) {
       console.error('Error updating user data:', error);
+      throw error;
+    }
+  }
+
+  async deleteUser(userId: number): Promise<void> {
+    try {
+      const response = await fetch(`${API}user/${userId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: 'Bearer ' + this.auth.token(),
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Failed to delete user');
+      }
+    } catch (error) {
+      console.error('Error deleting user:', error);
       throw error;
     }
   }
