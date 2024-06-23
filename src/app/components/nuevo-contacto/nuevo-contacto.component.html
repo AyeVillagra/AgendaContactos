@@ -38,16 +38,7 @@
       type="number"
       [(ngModel)]="contactoEdit.telephoneNumber"
       name="telefono"
-      pattern="[0-9]*"
     />
-    <div
-      *ngIf="
-        form.controls['telefono'].invalid &&
-        (form.controls['telefono'].touched || form.controls['telefono'].dirty)
-      "
-    >
-      <p class="error">El número de teléfono debe ser un número</p>
-    </div>
   </div>
   <br />
   <div class="form-group">
