@@ -139,4 +139,15 @@ export class ContactsComponent implements OnInit {
       }
     }
   }
+
+  actualizarContacto(contacto: Contacto) {
+    const index = this.contactos.findIndex((c) => c.id === contacto.id);
+    if (index !== -1) {
+      this.contactos[index] = contacto;
+      this.filterContacts();
+      if (this.selectedContact && this.selectedContact.id === contacto.id) {
+        this.selectedContact = contacto;
+      }
+    }
+  }
 }

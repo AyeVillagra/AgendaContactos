@@ -1,31 +1,66 @@
 <form #form="ngForm" (ngSubmit)="onSubmit()">
-  <h2>{{ contacto.id ? "Editar contacto" : "Nuevo contacto" }}</h2>
+  <h2>{{ contactoEdit.id ? "Editar contacto" : "Nuevo contacto" }}</h2>
   <div class="form-group">
-    <label for="">Nombre</label>
-    <input type="text" [(ngModel)]="contacto.name" name="name" />
+    <label for="name">Nombre</label>
+    <input type="text" [(ngModel)]="contactoEdit.name" name="name" required />
+    <div
+      *ngIf="
+        form.controls['name'].invalid &&
+        (form.controls['name'].touched || form.controls['name'].dirty)
+      "
+    >
+      <p class="error">El nombre es requerido</p>
+    </div>
   </div>
   <br />
   <div class="form-group">
-    <label for="">Número celular</label>
-    <input type="number" [(ngModel)]="contacto.celularNumber" name="celular" />
-  </div>
-  <br />
-  <div class="form-group">
-    <label for="">Número de teléfono</label>
+    <label for="celular">Número celular</label>
     <input
       type="number"
-      [(ngModel)]="contacto.telephoneNumber"
-      name="telefono"
+      [(ngModel)]="contactoEdit.celularNumber"
+      name="celular"
+      pattern="[0-9]*"
+      required
     />
+    <div
+      *ngIf="
+        form.controls['celular'].invalid &&
+        (form.controls['celular'].touched || form.controls['celular'].dirty)
+      "
+    >
+      <p class="error">El número celular es necesario y debe ser un número</p>
+    </div>
   </div>
   <br />
   <div class="form-group">
-    <label for="">Descripción</label>
-    <input type="text" [(ngModel)]="contacto.description" name="descripcion" />
+    <label for="telefono">Número de teléfono</label>
+    <input
+      type="number"
+      [(ngModel)]="contactoEdit.telephoneNumber"
+      name="telefono"
+      pattern="[0-9]*"
+    />
+    <div
+      *ngIf="
+        form.controls['telefono'].invalid &&
+        (form.controls['telefono'].touched || form.controls['telefono'].dirty)
+      "
+    >
+      <p class="error">El número de teléfono debe ser un número</p>
+    </div>
+  </div>
+  <br />
+  <div class="form-group">
+    <label for="descripcion">Descripción</label>
+    <input
+      type="text"
+      [(ngModel)]="contactoEdit.description"
+      name="descripcion"
+    />
   </div>
 
   <button class="add-button" type="submit">
-    {{ contacto.id ? "Editar" : "Agregar" }}
+    {{ contactoEdit.id ? "Editar" : "Agregar" }}
   </button>
   <span class="close-icon" (click)="cerrar.emit()">✖️</span>
 </form>

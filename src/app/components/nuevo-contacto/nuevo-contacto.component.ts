@@ -26,6 +26,7 @@ export class NuevoContactoComponent {
   contactsService = inject(ContactsService);
   @Output() cerrar = new EventEmitter();
   @Output() contactoAgregado = new EventEmitter<Contacto>();
+  @Output() contactoEditado = new EventEmitter<Contacto>();
   @Input() contacto: Contacto = {
     id: 0,
     name: '',
@@ -35,26 +36,35 @@ export class NuevoContactoComponent {
     userId: 0,
   };
 
+  contactoEdit: Contacto = { ...this.contacto };
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['contacto']) {
+      this.contactoEdit = { ...this.contacto };
+    }
+  }
+
   async onSubmit() {
-    this.contacto.id ? this.editarContacto() : this.agregarContacto();
+    this.contactoEdit.id ? this.editarContacto() : this.agregarContacto();
   }
 
   async agregarContacto() {
-    const res = await this.contactsService.create(this.contacto);
+    const res = await this.contactsService.create(this.contactoEdit);
     this.cerrar.emit();
     if (res) {
       generarMensajeExito('Contacto agregado');
-      this.contactoAgregado.emit(this.contacto);
+      this.contactoAgregado.emit(this.contactoEdit);
     } else {
       generarMensajeError('Error agregando contacto');
     }
   }
 
   async editarContacto() {
-    const res = await this.contactsService.edit(this.contacto);
+    const res = await this.contactsService.edit(this.contactoEdit);
     this.cerrar.emit();
     if (res) {
       generarMensajeExito('Contacto editado');
+      this.contactoEditado.emit(this.contactoEdit);
     } else {
       generarMensajeError('Error editando contacto');
     }

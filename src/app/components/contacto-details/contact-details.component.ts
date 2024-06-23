@@ -32,8 +32,9 @@ export class ContactDetailsComponent {
 
   editarContacto() {
     if (this.contacto) {
-      console.log('Editar contacto:', this.contacto);
-      this.editar.emit(this.contacto);
+      const contactoEdit = { ...this.contacto }; // Clonar los datos del contacto
+      console.log('Editar contacto:', contactoEdit);
+      this.editar.emit(contactoEdit); // Emitir el contacto clonado
     }
   }
 }
