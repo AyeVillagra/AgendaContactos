@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { usuarioSinLoguear } from './guards/usuario-sin-loguear.guard';
 import { usuarioLogueadoGuard } from './guards/usuario-logueado.guard';
+import { AdminUsersComponent } from './components/admin-users/admin-users.component';
+import { adminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -21,6 +23,11 @@ const routes: Routes = [
     canActivate: [usuarioLogueadoGuard],
     loadChildren: () =>
       import('./pages/contacts/contacts.module').then((m) => m.ContactsModule),
+  },
+  {
+    path: 'admin',
+    canActivate: [adminGuard], // Asigna el guard adminGuard aquí para proteger la ruta de administrador
+    component: AdminUsersComponent, // Componente que se mostrará para el perfil de administrador
   },
   {
     path: '',

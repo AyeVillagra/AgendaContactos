@@ -8,6 +8,7 @@ import { NuevoContactoComponent } from '../../components/nuevo-contacto/nuevo-co
 import { ContactDetailsComponent } from '../../components/contacto-details/contact-details.component';
 import { FormsModule } from '@angular/forms';
 import { UserProfileComponent } from '../../components/user-profile/user-profile.component';
+import { LogoutModule } from '../../components/logout-button/logout-button.module';
 
 @NgModule({
   declarations: [ContactsComponent, UserProfileComponent],
@@ -18,6 +19,7 @@ import { UserProfileComponent } from '../../components/user-profile/user-profile
     NuevoContactoComponent,
     ContactDetailsComponent,
     FormsModule,
+    LogoutModule,
   ],
 })
 export class ContactsModule {}

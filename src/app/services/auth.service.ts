@@ -35,6 +35,7 @@ export class AuthService {
       const tokenRecibido = await res.text();
       console.log('LOGUEANDO', tokenRecibido);
       localStorage.setItem('token', tokenRecibido);
+      this.setUserRoleFromToken(tokenRecibido);
       this.token.set(tokenRecibido);
 
       const helper = new JwtHelperService();
@@ -76,6 +77,7 @@ export class AuthService {
       const helper = new JwtHelperService();
       const decodedToken = helper.decodeToken(token);
       this.currentUserRole = decodedToken.role;
+      console.log('ROL', this.currentUserRole);
     }
   }
 }

@@ -75,6 +75,7 @@ export class UserService {
         },
         body: JSON.stringify(user),
       });
+      console.error(response);
       if (!response.ok) {
         throw new Error('Failed to create user');
       }

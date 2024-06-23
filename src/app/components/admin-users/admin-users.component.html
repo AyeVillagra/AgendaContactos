@@ -1,0 +1,56 @@
+<h2>Perfil de Administrador</h2>
+
+<div *ngIf="loading">Cargando usuarios...</div>
+<app-logout-button></app-logout-button>
+
+<table *ngIf="!loading && users.length > 0">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Rol</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      {{
+        user.name
+      }}>
+      <td>{{ user.id }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.state === 0 ? "Activo" : "Eliminado" }}</td>
+      <td>
+        <ng-container *ngIf="user.state === 0">
+          <button (click)="deleteUser(user.id)">Eliminar</button>
+          <button (click)="startEditing(user)">Editar</button>
+        </ng-container>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="!loading && users.length === 0">No hay usuarios para mostrar.</div>
+
+<div *ngIf="isEditing && selectedUser">
+  <h3>Editar Usuario</h3>
+  <form (ngSubmit)="updateUser()">
+    <label>
+      Nombre:
+      <input [(ngModel)]="selectedUser.name" name="name" />
+    </label>
+    <label>
+      Apellido:
+      <input [(ngModel)]="selectedUser.lastName" name="lastName" />
+    </label>
+    <label>
+      Email:
+      <input [(ngModel)]="selectedUser.email" name="email" />
+    </label>
+
+    <button type="submit">Guardar Cambios</button>
+    <button type="button" (click)="cancelEditing()">Cancelar</button>
+  </form>
+</div>

@@ -23,8 +23,14 @@ export class LoginComponent {
     this.errorLogin.set(false);
     this.cargando.set(true);
     this.authService.login(this.loginData).then((res) => {
-      if (res) this.router.navigate(['/contacts']);
-      else {
+      if (res) {
+        const currentUserRole = this.authService.getCurrentUserRole();
+        if (currentUserRole == 'Admin') {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/contacts']);
+        }
+      } else {
         this.errorLogin.set(true);
       }
       this.cargando.set(false);
