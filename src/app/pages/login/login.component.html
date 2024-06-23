@@ -19,23 +19,25 @@
         </p>
         <br />
         <br />
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Contraseña"
-          autocomplete="current-password"
-          required
-          minlength="3"
-          [(ngModel)]="loginData.password"
-          #password="ngModel"
-        />
-        <p
-          class="error"
-          *ngIf="password.invalid && (password.dirty || password.touched)"
-        >
-          La contraseña tiene que tener un mínimo de 8 caracteres
-        </p>
+        <div class="password-container">
+          <input
+            [type]="passwordVisible ? 'text' : 'password'"
+            name="password"
+            id="password"
+            placeholder="Contraseña"
+            autocomplete="current-password"
+            required
+            minlength="3"
+            [(ngModel)]="loginData.password"
+            #password="ngModel"
+          />
+          <i
+            class="fas"
+            [ngClass]="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"
+            (click)="togglePasswordVisibility()"
+          >
+          </i>
+        </div>
       </div>
       <button type="submit" [disabled]="loginForm.invalid">
         Iniciar sesión

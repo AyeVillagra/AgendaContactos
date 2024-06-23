@@ -1,5 +1,10 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../../interfaces/user';
+import { UserService } from '../../services/user.service';
+import {
+  generarMensajeError,
+  generarMensajeExito,
+} from '../../helpers/mensajes';
 
 @Component({
   selector: 'app-user-profile',
@@ -11,8 +16,21 @@ export class UserProfileComponent {
   @Output() saveChanges = new EventEmitter<void>();
   @Output() closeProfileModal = new EventEmitter<void>();
 
+  constructor(private userService: UserService) {}
+
   onSaveChanges() {
-    this.saveChanges.emit();
+    if (this.user) {
+      this.userService
+        .updateUser(this.user)
+        .then(() => {
+          generarMensajeExito('Cambios guardados correctamente');
+          this.saveChanges.emit();
+        })
+        .catch((error) => {
+          generarMensajeError('Error al guardar cambios');
+          console.error('Error al actualizar usuario:', error);
+        });
+    }
   }
 
   onCloseProfileModal() {

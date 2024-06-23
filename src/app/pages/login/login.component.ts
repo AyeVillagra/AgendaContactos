@@ -13,6 +13,7 @@ export class LoginComponent {
   router = inject(Router);
   errorLogin = signal(false);
   cargando = signal(false);
+  passwordVisible = false;
 
   loginData: LoginData = {
     userName: '',
@@ -35,5 +36,9 @@ export class LoginComponent {
       }
       this.cargando.set(false);
     });
+  }
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
   }
 }

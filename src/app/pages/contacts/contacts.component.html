@@ -1,17 +1,9 @@
 <div id="main-container">
+  <button (click)="openProfileModal()" class="profile-button">Mis Datos</button>
+  <app-logout-button></app-logout-button>
+
+  <br />
   <div id="contactos-container">
-    <button (click)="openProfileModal()" class="profile-button">
-      Mi Perfil
-    </button>
-    <app-logout-button></app-logout-button>
-
-    <input
-      type="text"
-      placeholder="Buscar contacto..."
-      [(ngModel)]="searchTerm"
-      (input)="filterContacts()"
-    />
-
     <button class="fab" (click)="handleNuevoContacto()">+</button>
     <dialog method="dialog" #dialogNuevoContacto id="dialogNuevoContacto">
       <app-nuevo-contacto
@@ -21,6 +13,16 @@
       ></app-nuevo-contacto>
     </dialog>
 
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="Buscar contacto"
+        [(ngModel)]="searchTerm"
+        (input)="filterContacts()"
+      />
+      <i class="fas fa-search"></i>
+    </div>
+    <br />
     <div class="contactos-grid">
       <app-tarjeta-contacto
         *ngFor="let contacto of filteredContactos"

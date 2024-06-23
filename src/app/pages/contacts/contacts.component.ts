@@ -31,7 +31,6 @@ export class ContactsComponent implements OnInit {
     this.showProfileModal = true;
   }
 
-  // Método para cerrar la modal del perfil
   closeProfileModal() {
     this.showProfileModal = false;
   }
@@ -54,9 +53,7 @@ export class ContactsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Llama a this.loadContactos() para cargar los contactos
     this.loadContactos();
-    // Llama a this.loadCurrentUser() para cargar los datos del usuario actual
     this.loadCurrentUser();
   }
   loadContactos() {
@@ -93,11 +90,12 @@ export class ContactsComponent implements OnInit {
     this.contactos = await this.contactsService.getAll();
   }
   actualizarLista(contacto: Contacto) {
-    this.cargarContactos();
+    this.loadContactos();
   }
 
   handleContactoEliminado(id: number) {
     this.contactos = this.contactos.filter((contacto) => contacto.id !== id);
+    this.loadContactos();
   }
 
   handleEditarContacto(contacto: Contacto) {

@@ -80,3 +80,19 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-container input {
+  flex: 1;
+}
+
+.password-container .fas {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}

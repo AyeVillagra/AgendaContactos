@@ -7,6 +7,7 @@
   padding: 20px;
   flex: 1;
   position: relative;
+  margin-top: 30px;
 }
 
 .contactos-grid {
@@ -69,4 +70,29 @@ dialog {
   padding: 20px;
   border-radius: 10px;
   border: 1px solid #ccc;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 25%;
+}
+
+.search-container input {
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+.search-container .fas {
+  position: absolute;
+  left: 10px;
+  color: #aaa;
 }
