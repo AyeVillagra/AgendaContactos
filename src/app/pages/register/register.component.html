@@ -10,13 +10,13 @@
           id="user"
           placeholder="Usuario"
           autocomplete="username"
-          minlength="4"
+          minlength="1"
           required
           [(ngModel)]="registerData.userName"
           #user="ngModel"
         />
         <p class="error" *ngIf="user.invalid && (user.touched || user.dirty)">
-          Ingrese un nombre de usuario válido
+          Ingrese un nombre de usuario
         </p>
       </div>
       <div class="form-group">
@@ -35,7 +35,7 @@
           class="error"
           *ngIf="firstName.invalid && (firstName.touched || firstName.dirty)"
         >
-          Ingrese un nombre válido
+          Ingresa tu nombre
         </p>
       </div>
       <div class="form-group">
@@ -46,7 +46,7 @@
           id="lastName"
           placeholder="Apellido"
           autocomplete="family-name"
-          minlength="3"
+          minlength="2"
           required
           [(ngModel)]="registerData.lastName"
           #lastName="ngModel"
@@ -55,7 +55,7 @@
           class="error"
           *ngIf="lastName.invalid && (lastName.touched || lastName.dirty)"
         >
-          Ingrese un apellido válido
+          Ingrese tu apellido
         </p>
       </div>
       <div class="form-group">
@@ -69,6 +69,7 @@
           required
           [(ngModel)]="registerData.email"
           #email="ngModel"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
         />
         <p
           class="error"
@@ -80,21 +81,23 @@
       <div class="form-group">
         <label for="password">Contraseña</label>
         <input
-          type="password"
+          type="text"
           name="password"
           id="password"
           placeholder="Contraseña"
           autocomplete="current-password"
-          minlength="3"
+          minlength="8"
           required
           [(ngModel)]="registerData.password"
           #password="ngModel"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
         />
         <p
           class="error"
           *ngIf="password.invalid && (password.touched || password.dirty)"
         >
-          Ingrese una contraseña válida
+          La contraseña debe contener al menos 8 caracteres, una letra
+          mayúscula, una letra minúscula y un número.
         </p>
       </div>
       <button type="submit" [disabled]="registerForm.invalid">
@@ -102,11 +105,10 @@
       </button>
       <img
         class="spinner"
-        src="./../../../assets/img/icons/spinner.svg"
+        src="./../../../assets/img/icons/Rolling.svg"
         alt="cargando"
         *ngIf="cargando()"
       />
-      <p *ngIf="errorRegister()" class="error">Error en el registro</p>
     </form>
     <p>
       ¿Ya tenés una cuenta? -

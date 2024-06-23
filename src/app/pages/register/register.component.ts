@@ -8,6 +8,10 @@ import {
 import { Router } from '@angular/router';
 import { RegisterData } from '../../interfaces/user';
 import { AuthService } from '../../services/auth.service';
+import {
+  generarMensajeError,
+  generarMensajeExito,
+} from '../../helpers/mensajes';
 
 @Component({
   selector: 'app-register',
@@ -34,8 +38,10 @@ export class RegisterComponent {
     try {
       const res = await this.authService.register(this.registerData);
       if (res.ok) {
+        generarMensajeExito('Usuario registrado correctamente');
         this.router.navigate(['/login']);
       } else {
+        generarMensajeError('Error en el registro');
         this.errorRegister.set(true);
       }
     } catch (err) {

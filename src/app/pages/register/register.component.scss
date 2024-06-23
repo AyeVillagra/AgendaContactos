@@ -3,15 +3,15 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f8f9fa; /* Fondo claro para resaltar el formulario */
+  background-color: #f8f9fa;
 }
 
 .form-container {
-  width: 400px; /* Aumenta el tamaño del formulario */
+  width: 400px;
   padding: 20px;
   background-color: #bbb3b3;
-  border-radius: 10px; /* Aumenta el radio de borde */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agrega una sombra */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-group {
@@ -28,7 +28,7 @@
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px; /* Aumenta el radio de borde */
+  border-radius: 5px;
   box-sizing: border-box;
 }
 
@@ -38,7 +38,7 @@
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 5px; /* Aumenta el radio de borde */
+  border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
 }
@@ -56,6 +56,9 @@
 .form-container .spinner {
   display: block;
   margin: 10px auto;
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
 }
 
 .form-container p {

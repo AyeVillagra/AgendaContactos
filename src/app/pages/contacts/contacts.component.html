@@ -23,13 +23,18 @@
       <i class="fas fa-search"></i>
     </div>
     <br />
-    <div class="contactos-grid">
-      <app-tarjeta-contacto
-        *ngFor="let contacto of filteredContactos"
-        [contacto]="contacto"
-        (click)="openModal(contacto)"
-      ></app-tarjeta-contacto>
-    </div>
+    <ng-container *ngIf="filteredContactos.length > 0; else noContactsMessage">
+      <div class="contactos-grid">
+        <app-tarjeta-contacto
+          *ngFor="let contacto of filteredContactos"
+          [contacto]="contacto"
+          (click)="openModal(contacto)"
+        ></app-tarjeta-contacto>
+      </div>
+    </ng-container>
+    <ng-template #noContactsMessage>
+      <p class="sin-contactos">Todavía no tienes contactos agendados.</p>
+    </ng-template>
     <br />
     <div class="modal" *ngIf="showModal">
       <app-contacto-details
