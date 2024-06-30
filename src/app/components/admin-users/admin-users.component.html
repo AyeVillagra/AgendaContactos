@@ -23,7 +23,7 @@
       <td>{{ user.state === 0 ? "Activo" : "Eliminado" }}</td>
       <td>
         <ng-container *ngIf="user.state === 0">
-          <button (click)="archiveUser(user.id)">Eliminar</button>
+          <button (click)="deleteUser(user.id)">Eliminar</button>
           <button (click)="startEditing(user)">Editar</button>
         </ng-container>
       </td>

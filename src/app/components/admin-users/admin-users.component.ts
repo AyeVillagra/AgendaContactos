@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
-import { RegisterData, User } from '../../interfaces/user';
+import { User } from '../../interfaces/user';
 import { UserService } from '../../services/user.service';
-import { AuthService } from '../../services/auth.service';
+import { generarMensajeExito } from '../../helpers/mensajes';
 
 @Component({
   selector: 'app-admin-users',
   templateUrl: './admin-users.component.html',
-  styleUrls: ['./admin-users.component.scss'],
+  styleUrls: [],
 })
 export class AdminUsersComponent implements OnInit {
   users: User[] = [];
@@ -27,7 +27,7 @@ export class AdminUsersComponent implements OnInit {
     } catch (error) {
       console.error('Error al cargar usuarios:', error);
     } finally {
-      this.loading = false; // Desactivar estado de carga al terminar
+      this.loading = false;
     }
   }
 
@@ -58,7 +58,8 @@ export class AdminUsersComponent implements OnInit {
     if (confirm('¿Estás seguro que deseas eliminar este usuario?')) {
       try {
         await this.userService.deleteUser(userId);
-        // Actualizar la lista de usuarios después de eliminar
+        generarMensajeExito('Usuario eliminado');
+        // Actualizar los usuarios después de eliminar
         this.users = this.users.filter((user) => user.id !== userId);
       } catch (error) {
         console.error('Error al eliminar usuario:', error);
@@ -72,7 +73,7 @@ export class AdminUsersComponent implements OnInit {
         await this.userService.archiveUser(userId);
         this.users = this.users.filter((user) => user.id !== userId);
       } catch (error) {
-        console.error('Error archiving user:', error);
+        console.error('Error al archivar usuario:', error);
       }
     }
   }

@@ -7,24 +7,6 @@ header {
   #logo {
     height: 80px;
   }
-  nav {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    > * {
-      font-size: large;
-      color: green;
-      line-height: 20px;
-      background-color: unset;
-      border: unset;
-      text-decoration: unset;
-      padding: 16px 12px;
-      &:hover {
-        background-color: white;
-      }
-    }
-  }
 }
 
 .active {

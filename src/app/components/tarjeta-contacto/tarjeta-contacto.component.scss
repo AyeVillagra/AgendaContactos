@@ -11,6 +11,8 @@
   border-radius: 10px;
   transition: background-color 0.3s ease;
   cursor: pointer;
+  margin: 0;
+  text-align: center;
 }
 
 .tarjeta-contacto:hover {
@@ -18,13 +20,8 @@
 }
 
 .tarjeta-contacto i {
-  font-size: 36px; /* Tamaño del ícono */
-  margin-bottom: 10px; /* Espacio entre el ícono y el nombre */
-}
-
-.tarjeta-contacto p {
-  margin: 0; /* Elimina el margen para evitar espacio extra */
-  text-align: center;
+  font-size: 36px;
+  margin-bottom: 10px;
 }
 
 @media (max-width: 768px) {

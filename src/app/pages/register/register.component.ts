@@ -1,10 +1,4 @@
-import {
-  Component,
-  Signal,
-  WritableSignal,
-  inject,
-  signal,
-} from '@angular/core';
+import { Component, WritableSignal, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { RegisterData } from '../../interfaces/user';
 import { AuthService } from '../../services/auth.service';
