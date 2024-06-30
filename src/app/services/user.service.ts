@@ -121,4 +121,22 @@ export class UserService {
       throw error;
     }
   }
+
+  async archiveUser(userId: number): Promise<void> {
+    try {
+      const response = await fetch(`${API}user/archive/${userId}`, {
+        method: 'PUT',
+        headers: {
+          Authorization: 'Bearer ' + this.auth.token(),
+          'Content-Type': 'application/json',
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Failed to archive user');
+      }
+    } catch (error) {
+      console.error('Error archiving user:', error);
+      throw error;
+    }
+  }
 }

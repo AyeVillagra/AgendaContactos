@@ -7,24 +7,23 @@
   <thead>
     <tr>
       <th>ID</th>
+      <th>Nombre de usuario</th>
       <th>Nombre</th>
       <th>Email</th>
-      <th>Rol</th>
+      <th>Estado</th>
       <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let user of users">
-      {{
-        user.name
-      }}>
       <td>{{ user.id }}</td>
+      <td>{{ user.userName }}</td>
       <td>{{ user.name }}</td>
       <td>{{ user.email }}</td>
       <td>{{ user.state === 0 ? "Activo" : "Eliminado" }}</td>
       <td>
         <ng-container *ngIf="user.state === 0">
-          <button (click)="deleteUser(user.id)">Eliminar</button>
+          <button (click)="archiveUser(user.id)">Eliminar</button>
           <button (click)="startEditing(user)">Editar</button>
         </ng-container>
       </td>
@@ -48,6 +47,10 @@
     <label>
       Email:
       <input [(ngModel)]="selectedUser.email" name="email" />
+      <label>
+        Password:
+        <input [(ngModel)]="selectedUser.password" name="password" />
+      </label>
     </label>
 
     <button type="submit">Guardar Cambios</button>

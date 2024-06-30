@@ -15,6 +15,9 @@ export class ContactDetailsComponent {
   @Output() contactoEliminado = new EventEmitter<number>();
   @Output() editar = new EventEmitter<Contacto>();
 
+  ngOnInit(): void {
+    console.log('Datos del contacto:', this.contacto);
+  }
   async eliminarContacto() {
     if (
       this.contacto &&

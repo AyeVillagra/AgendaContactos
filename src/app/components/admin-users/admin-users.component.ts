@@ -42,7 +42,7 @@ export class AdminUsersComponent implements OnInit {
         await this.userService.updateUser(this.selectedUser);
         this.isEditing = false;
         this.selectedUser = null;
-        this.loadUsers(); // Recargar la lista de usuarios
+        await this.loadUsers();
       } catch (error) {
         console.error('Error updating user:', error);
       }
@@ -57,11 +57,22 @@ export class AdminUsersComponent implements OnInit {
   async deleteUser(userId: number) {
     if (confirm('¿Estás seguro que deseas eliminar este usuario?')) {
       try {
-        await this.userService.deleteUser(userId); // Llamar al servicio para eliminar usuario
+        await this.userService.deleteUser(userId);
         // Actualizar la lista de usuarios después de eliminar
         this.users = this.users.filter((user) => user.id !== userId);
       } catch (error) {
         console.error('Error al eliminar usuario:', error);
+      }
+    }
+  }
+
+  async archiveUser(userId: number) {
+    if (confirm('¿Estás seguro que deseas archivar este usuario?')) {
+      try {
+        await this.userService.archiveUser(userId);
+        this.users = this.users.filter((user) => user.id !== userId);
+      } catch (error) {
+        console.error('Error archiving user:', error);
       }
     }
   }

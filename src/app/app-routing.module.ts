@@ -26,12 +26,12 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    canActivate: [adminGuard], // Asigna el guard adminGuard aquí para proteger la ruta de administrador
-    component: AdminUsersComponent, // Componente que se mostrará para el perfil de administrador
+    canActivate: [adminGuard],
+    component: AdminUsersComponent,
   },
   {
     path: '',
-    redirectTo: 'contacts',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
