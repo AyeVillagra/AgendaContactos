@@ -6,7 +6,7 @@ import { generarMensajeExito } from '../../helpers/mensajes';
 @Component({
   selector: 'app-admin-users',
   templateUrl: './admin-users.component.html',
-  styleUrls: [],
+  styleUrls: ['./admin-users.component.scss'],
 })
 export class AdminUsersComponent implements OnInit {
   users: User[] = [];

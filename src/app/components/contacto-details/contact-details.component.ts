@@ -1,6 +1,10 @@
 import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { Contacto } from '../../interfaces/contacto';
 import { ContactsService } from '../../services/contacts.service';
+import {
+  generarMensajeError,
+  generarMensajeExito,
+} from '../../helpers/mensajes';
 
 @Component({
   selector: 'app-contacto-details',
@@ -27,17 +31,18 @@ export class ContactDetailsComponent {
       if (eliminado) {
         this.contactoEliminado.emit(this.contacto.id);
         this.cerrar.emit();
+        generarMensajeExito('Contacto eliminado');
       } else {
-        alert('Error al eliminar el contacto');
+        generarMensajeError('Error al eliminar el contacto');
       }
     }
   }
 
   editarContacto() {
     if (this.contacto) {
-      const contactoEdit = { ...this.contacto }; // Clonar los datos del contacto
+      const contactoEdit = { ...this.contacto }; // Copiar los datos del contacto
       console.log('Editar contacto:', contactoEdit);
-      this.editar.emit(contactoEdit); // Emitir el contacto clonado
+      this.editar.emit(contactoEdit);
     }
   }
 }

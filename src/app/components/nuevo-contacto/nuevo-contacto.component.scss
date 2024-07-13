@@ -44,6 +44,11 @@ h2 {
   background-color: #0056b3;
 }
 
+.add-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
 .close-icon {
   position: absolute;
   top: 10px;
@@ -55,4 +60,14 @@ h2 {
 
 .close-icon:hover {
   color: #000;
+}
+
+.error {
+  color: red;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

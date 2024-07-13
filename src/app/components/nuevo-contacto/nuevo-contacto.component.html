@@ -1,25 +1,29 @@
 <form #form="ngForm" (ngSubmit)="onSubmit()">
   <h2>{{ contactoEdit.id ? "Editar contacto" : "Nuevo contacto" }}</h2>
+
   <div class="form-group">
     <label for="name">Nombre</label>
-    <input type="text" [(ngModel)]="contactoEdit.name" name="name" required />
-    <div
-      *ngIf="
-        form.controls['name'].invalid &&
-        (form.controls['name'].touched || form.controls['name'].dirty)
-      "
-    >
+    <input
+      type="text"
+      [(ngModel)]="contactoEdit.name"
+      name="name"
+      #name="ngModel"
+      required
+    />
+    <div *ngIf="name.invalid && (name.touched || name.dirty)">
       <p class="error">El nombre es requerido</p>
     </div>
   </div>
   <br />
+
   <div class="form-group">
     <label for="celular">Número celular</label>
     <input
       type="number"
       [(ngModel)]="contactoEdit.celularNumber"
       name="celular"
-      pattern="[0-9]*"
+      #celular="ngModel"
+      pattern="^\d+$"
       required
     />
     <div
@@ -32,25 +36,29 @@
     </div>
   </div>
   <br />
+
   <div class="form-group">
     <label for="telefono">Número de teléfono</label>
     <input
       type="number"
       [(ngModel)]="contactoEdit.telephoneNumber"
       name="telefono"
+      #telefono="ngModel"
     />
   </div>
   <br />
+
   <div class="form-group">
     <label for="descripcion">Descripción</label>
     <input
       type="text"
       [(ngModel)]="contactoEdit.description"
       name="descripcion"
+      #descripcion="ngModel"
     />
   </div>
 
-  <button class="add-button" type="submit">
+  <button class="add-button" type="submit" [disabled]="form.invalid">
     {{ contactoEdit.id ? "Editar" : "Agregar" }}
   </button>
   <span class="close-icon" (click)="cerrar.emit()">✖️</span>

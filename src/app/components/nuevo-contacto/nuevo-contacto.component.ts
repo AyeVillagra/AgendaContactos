@@ -14,6 +14,7 @@ import {
   generarMensajeError,
   generarMensajeExito,
 } from '../../helpers/mensajes';
+import { NONE_TYPE } from '@angular/compiler';
 
 @Component({
   selector: 'app-nuevo-contacto',
@@ -45,6 +46,13 @@ export class NuevoContactoComponent {
   }
 
   async onSubmit() {
+    if (
+      !this.contactoEdit.celularNumber ||
+      this.contactoEdit.celularNumber === 0
+    ) {
+      alert('Por favor ingrese un número de celular válido.');
+      return;
+    }
     this.contactoEdit.id ? this.editarContacto() : this.agregarContacto();
   }
 
