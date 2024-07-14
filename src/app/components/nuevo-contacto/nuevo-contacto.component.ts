@@ -58,10 +58,14 @@ export class NuevoContactoComponent {
   async agregarContacto() {
     const newNumbers: NewNumber[] = this.contactoEdit.numbers.map((num) => ({
       contactNumber: num.contactNumber,
-      type: num.type,
+      type: typeof num.type === 'string' ? parseInt(num.type) : num.type,
       contactId: this.contactoEdit.id,
     }));
-    const res = await this.contactsService.create(this.contactoEdit);
+    const contactoParaCrear = { ...this.contactoEdit, numbers: newNumbers };
+
+    console.log('Datos a enviar al backend:', contactoParaCrear);
+
+    const res = await this.contactsService.create(contactoParaCrear);
     this.cerrar.emit();
     if (res) {
       generarMensajeExito('Contacto agregado');
@@ -72,7 +76,12 @@ export class NuevoContactoComponent {
   }
 
   async editarContacto() {
-    const res = await this.contactsService.edit(this.contactoEdit);
+    const contactoParaEditar = { ...this.contactoEdit };
+
+    console.log('Datos a enviar al backend (Editar):', contactoParaEditar);
+
+    const res = await this.contactsService.edit(contactoParaEditar);
+    // const res = await this.contactsService.edit(this.contactoEdit);
     this.cerrar.emit();
     if (res) {
       generarMensajeExito('Contacto editado');
@@ -88,5 +97,9 @@ export class NuevoContactoComponent {
       type: 0,
       contactId: this.contactoEdit.id,
     });
+  }
+
+  eliminarNumero(index: number): void {
+    this.contactoEdit.numbers.splice(index, 1);
   }
 }
