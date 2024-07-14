@@ -31,8 +31,7 @@ export class NuevoContactoComponent {
   @Input() contacto: Contacto = {
     id: 0,
     name: '',
-    telephoneNumber: 0,
-    celularNumber: 0,
+    numbers: [],
     description: '',
     userId: 0,
   };
@@ -46,13 +45,13 @@ export class NuevoContactoComponent {
   }
 
   async onSubmit() {
-    if (
+    /* if (
       !this.contactoEdit.celularNumber ||
       this.contactoEdit.celularNumber === 0
     ) {
       alert('Por favor ingrese un número de celular válido.');
       return;
-    }
+    } */
     this.contactoEdit.id ? this.editarContacto() : this.agregarContacto();
   }
 

@@ -18,6 +18,16 @@
   margin: 5px 0;
 }
 
+.description-container {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.subtitles {
+  font-weight: bold;
+}
+
 .contact-details button {
   margin-top: 20px;
   padding: 10px 20px;

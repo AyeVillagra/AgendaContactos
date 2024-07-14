@@ -1,8 +1,29 @@
 <div class="contact-details">
   <h3>{{ contacto?.name }}</h3>
-  <p>Celular: {{ contacto?.celularNumber }}</p>
-  <p>Teléfono: {{ contacto?.telephoneNumber }}</p>
-  <p>Descripción: {{ contacto?.description }}</p>
+
+  <ng-container
+    *ngIf="contacto && contacto.numbers && contacto.numbers.length > 0"
+  >
+    <p class="subtitles">Celular/es:</p>
+    <div *ngFor="let number of contacto.numbers">
+      <div *ngIf="number.type === 0">
+        <p>{{ number.contactNumber }}</p>
+      </div>
+    </div>
+
+    <p class="subtitles">Teléfono/s:</p>
+    <div *ngFor="let number of contacto.numbers">
+      <div *ngIf="number.type === 1">
+        <p>{{ number.contactNumber }}</p>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="description-container">
+    <p class="subtitles">Descripción:</p>
+    <p>{{ contacto?.description }}</p>
+  </div>
+
   <div class="button-container">
     <button class="edit-button" (click)="editarContacto()">Editar</button>
     <button class="delete-button" (click)="eliminarContacto()">Eliminar</button>

@@ -5,12 +5,14 @@ import {
   generarMensajeError,
   generarMensajeExito,
 } from '../../helpers/mensajes';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-contacto-details',
   standalone: true,
   templateUrl: './contact-details.component.html',
   styleUrls: ['./contact-details.component.scss'],
+  imports: [CommonModule],
 })
 export class ContactDetailsComponent {
   contactsService = inject(ContactsService);

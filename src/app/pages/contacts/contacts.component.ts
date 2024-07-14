@@ -38,8 +38,7 @@ export class ContactsComponent implements OnInit {
   contactoSeleccionado: Contacto = {
     id: 0,
     name: '',
-    telephoneNumber: 0,
-    celularNumber: 0,
+    numbers: [],
     description: '',
     userId: 0,
   };
@@ -116,8 +115,7 @@ export class ContactsComponent implements OnInit {
     this.contactoSeleccionado = {
       id: 0,
       name: '',
-      telephoneNumber: 0,
-      celularNumber: 0,
+      numbers: [],
       description: '',
       userId: 0,
     };
