@@ -1,5 +1,19 @@
 <div id="container">
   <img src="./../../../assets/img/404.png" alt="Error 404" />
-  <p>No pudimos encontrar la página buscada.</p>
-  <p>Te sugerimos <a [routerLink]="['/']">Volver al inicio</a></p>
+  <p *ngIf="currentUserRole === 'Admin'">
+    No pudimos encontrar la página buscada.
+  </p>
+  <p *ngIf="currentUserRole === 'Admin'">
+    Te sugerimos
+    <a class="link" (click)="redirectToDefault()"
+      >Volver a la Página de Administración</a
+    >
+  </p>
+  <p *ngIf="currentUserRole !== 'Admin'">
+    No pudimos encontrar la página buscada.
+  </p>
+  <p *ngIf="currentUserRole !== 'Admin'">
+    Te sugerimos
+    <a class="link" (click)="redirectToDefault()">Volver a Mis Contactos</a>
+  </p>
 </div>

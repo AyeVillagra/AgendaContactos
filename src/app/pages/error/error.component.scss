@@ -7,3 +7,12 @@
     height: 100px;
   }
 }
+.link {
+  cursor: pointer;
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.link:hover {
+  color: #0056b3;
+}
