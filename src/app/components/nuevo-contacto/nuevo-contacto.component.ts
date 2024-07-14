@@ -14,7 +14,7 @@ import {
   generarMensajeError,
   generarMensajeExito,
 } from '../../helpers/mensajes';
-import { NONE_TYPE } from '@angular/compiler';
+import { NewNumber } from '../../interfaces/number';
 
 @Component({
   selector: 'app-nuevo-contacto',
@@ -56,6 +56,11 @@ export class NuevoContactoComponent {
   }
 
   async agregarContacto() {
+    const newNumbers: NewNumber[] = this.contactoEdit.numbers.map((num) => ({
+      contactNumber: num.contactNumber,
+      type: num.type,
+      contactId: this.contactoEdit.id,
+    }));
     const res = await this.contactsService.create(this.contactoEdit);
     this.cerrar.emit();
     if (res) {
@@ -75,5 +80,13 @@ export class NuevoContactoComponent {
     } else {
       generarMensajeError('Error editando contacto');
     }
+  }
+
+  agregarNumero(): void {
+    this.contactoEdit.numbers.push({
+      contactNumber: '',
+      type: 0,
+      contactId: this.contactoEdit.id,
+    });
   }
 }
