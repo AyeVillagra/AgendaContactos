@@ -45,16 +45,18 @@ export class NuevoContactoComponent {
   }
 
   async onSubmit() {
-    /* if (
-      !this.contactoEdit.celularNumber ||
-      this.contactoEdit.celularNumber === 0
-    ) {
-      alert('Por favor ingrese un número de celular válido.');
-      return;
-    } */
-    this.contactoEdit.id ? this.editarContacto() : this.agregarContacto();
+    if (this.isFormValid()) {
+      this.contactoEdit.id ? this.editarContacto() : this.agregarContacto();
+    }
   }
 
+  isFormValid(): boolean {
+    return (
+      this.contactoEdit.name.trim() !== '' &&
+      this.contactoEdit.numbers.length > 0 &&
+      this.contactoEdit.numbers.every((num) => num.contactNumber.trim() !== '')
+    );
+  }
   async agregarContacto() {
     const newNumbers: NewNumber[] = this.contactoEdit.numbers.map((num) => ({
       contactNumber: num.contactNumber,
@@ -101,5 +103,17 @@ export class NuevoContactoComponent {
 
   eliminarNumero(index: number): void {
     this.contactoEdit.numbers.splice(index, 1);
+  }
+
+  onClose(): void {
+    // Restablece los detalles originales del contacto al cerrar
+    this.contactoEdit = {
+      id: 0,
+      name: '',
+      numbers: [],
+      description: '',
+      userId: 0,
+    };
+    this.cerrar.emit();
   }
 }

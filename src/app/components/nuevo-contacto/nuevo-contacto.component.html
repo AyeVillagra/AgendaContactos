@@ -46,6 +46,7 @@
         name="contactNumber{{ i }}"
         #contactNumber="ngModel"
         required
+        pattern="[0-9]*"
       />
       <div
         *ngIf="
@@ -54,7 +55,7 @@
             form.controls['contactNumber' + i].dirty)
         "
       >
-        <p class="error">El número es necesario</p>
+        <p class="error">Ingrese un número válido</p>
       </div>
     </div>
 
@@ -68,8 +69,8 @@
     Agregar Número
   </button>
 
-  <button class="add-button" type="submit" [disabled]="form.invalid">
+  <button class="add-button" type="submit" [disabled]="!isFormValid()">
     {{ contactoEdit.id ? "Editar" : "Agregar" }}
   </button>
-  <span class="close-icon" (click)="cerrar.emit()">✖️</span>
+  <span class="close-icon" (click)="onClose()">✖️</span>
 </form>

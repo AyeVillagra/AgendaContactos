@@ -65,26 +65,6 @@ export class UserService {
     }
   }
 
-  async createUser(user: User): Promise<void> {
-    try {
-      const response = await fetch(`${API}user`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + this.auth.token(),
-        },
-        body: JSON.stringify(user),
-      });
-      console.error(response);
-      if (!response.ok) {
-        throw new Error('Failed to create user');
-      }
-    } catch (error) {
-      console.error('Error creating user:', error);
-      throw error;
-    }
-  }
-
   async updateUser(user: User): Promise<void> {
     try {
       const response = await fetch(`${API}user/${user.id}`, {
