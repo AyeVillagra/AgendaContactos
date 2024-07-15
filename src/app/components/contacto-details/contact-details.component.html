@@ -1,5 +1,5 @@
 <div class="contact-details">
-  <h3>{{ contacto?.name }}</h3>
+  <h3>{{ contacto?.name | uppercase }}</h3>
 
   <ng-container
     *ngIf="contacto && contacto.numbers && contacto.numbers.length > 0"

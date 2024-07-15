@@ -46,7 +46,7 @@
         name="contactNumber{{ i }}"
         #contactNumber="ngModel"
         required
-        pattern="[0-9]*"
+        pattern="^\d+$"
       />
       <div
         *ngIf="
@@ -70,7 +70,7 @@
   </button>
 
   <button class="add-button" type="submit" [disabled]="!isFormValid()">
-    {{ contactoEdit.id ? "Editar" : "Agregar" }}
+    {{ contactoEdit.id ? "Editar" : "Añadir Contacto" }}
   </button>
   <span class="close-icon" (click)="onClose()">✖️</span>
 </form>

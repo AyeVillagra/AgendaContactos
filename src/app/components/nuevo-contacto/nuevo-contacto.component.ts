@@ -54,7 +54,10 @@ export class NuevoContactoComponent {
     return (
       this.contactoEdit.name.trim() !== '' &&
       this.contactoEdit.numbers.length > 0 &&
-      this.contactoEdit.numbers.every((num) => num.contactNumber.trim() !== '')
+      this.contactoEdit.numbers.every(
+        (num) =>
+          num.contactNumber.trim() !== '' && /^\d+$/.test(num.contactNumber)
+      )
     );
   }
   async agregarContacto() {
