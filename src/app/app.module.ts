@@ -11,7 +11,7 @@ import { LogoutModule } from './components/logout-button/logout-button.module';
 @NgModule({
   declarations: [AppComponent, HeaderComponent, AdminUsersComponent],
   imports: [
-    BrowserModule,
+    BrowserModule, //ngIf y ngFor
     AppRoutingModule,
     FormsModule,
     CommonModule,
