@@ -60,20 +60,9 @@ export class AdminUsersComponent implements OnInit {
         await this.userService.deleteUser(userId);
         generarMensajeExito('Usuario eliminado');
         // Actualizar los usuarios después de eliminar
-        this.users = this.users.filter((user) => user.id !== userId);
+        await this.loadUsers();
       } catch (error) {
         console.error('Error al eliminar usuario:', error);
-      }
-    }
-  }
-
-  async archiveUser(userId: number) {
-    if (confirm('¿Estás seguro que deseas archivar este usuario?')) {
-      try {
-        await this.userService.archiveUser(userId);
-        this.users = this.users.filter((user) => user.id !== userId);
-      } catch (error) {
-        console.error('Error al archivar usuario:', error);
       }
     }
   }
