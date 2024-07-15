@@ -13,11 +13,12 @@ import {
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  authService = inject(AuthService);
+  authService = inject(AuthService); // proporciona acceso a los servicios necesarios
   router = inject(Router);
   errorRegister: WritableSignal<boolean> = signal(false);
   cargando = signal(false);
 
+  // inicializacion de un objeto del tipo RegisterData
   registerData: RegisterData = {
     userName: '',
     name: '',
